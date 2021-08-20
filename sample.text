@@ -1,0 +1,63 @@
+1.Create Student
+URL: http://localhost:3000/graphql
+mutation{
+  createStudent(studentInput:{
+    name: "eshan",
+    dob: "1993-11-12",
+    email:"eshanwp@gmail.com",
+    age: 28
+  }){
+    id,
+    name,
+    dob,
+    email,
+    age
+  }
+}
+
+curl 'http://localhost:3000/graphql' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: http://localhost:3000' --data-binary '{"query":"mutation{\n  createStudent(studentInput:{\n    name: \"eshan\",\n    dob: \"1993-11-12\",\n    email:\"eshanwp@gmail.com\",\n    age: 28\n  }){\n    id,\n    name,\n    dob,\n    email,\n    age\n  }\n}"}' --compressed
+
+2. Get all student
+URL : http://localhost:3000/graphql
+{
+  getAllStudents{
+    id,
+    name,
+    dob,
+    email,
+    age
+  }
+}
+curl 'http://localhost:3000/graphql' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: http://localhost:3000' --data-binary '{"query":"# Write your query or mutation here\n{\n  getAllStudents{\n    id,\n    name,\n    dob,\n    email,\n    age\n  }\n}"}' --compressed
+
+3. Update student
+URL: http://localhost:3000/graphql
+mutation{
+  updateStudent(studentInput:{
+    id: "f9a02a4e-6cc5-4a65-947c-72cb5dbe7a0d",
+    name: "eshan edit",
+    dob: "2000-11-12",
+    email:"eshanwp1@gmail.com",
+    age: 20
+  }){
+    id,
+    name,
+    dob,
+    email,
+    age
+  }
+}
+curl 'http://localhost:3000/graphql' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: http://localhost:3000' --data-binary '{"query":"mutation{\n  updateStudent(studentInput:{\n    id: \"f9a02a4e-6cc5-4a65-947c-72cb5dbe7a0d\",\n    name: \"eshan edit\",\n    dob: \"2000-11-12\",\n    email:\"eshanwp1@gmail.com\",\n    age: 20\n  }){\n    id,\n    name,\n    dob,\n    email,\n    age\n  }\n}"}' --compressed
+
+4. Delete student
+URL: http://localhost:3000/graphql
+mutation{
+  removeStudent(id:"f9a02a4e-6cc5-4a65-947c-72cb5dbe7a0d"){
+    id,
+    name,
+    dob,
+    email,
+    age
+  }
+}
+curl 'http://localhost:3000/graphql' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: http://localhost:3000' --data-binary '{"query":"mutation{\n  removeStudent(id:\"f9a02a4e-6cc5-4a65-947c-72cb5dbe7a0d\"){\n    id,\n    name,\n    dob,\n    email,\n    age\n  }\n}"}' --compressed
