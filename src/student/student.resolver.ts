@@ -14,7 +14,12 @@ export class StudentResolver {
   }
 
   @Mutation(() => Student, { name: 'createStudent' })
-  create(@Args('studentInput') studentCreateDTO: StudentCreateDTO) {
+  create(
+    @Args({ name: 'studentInput', type: () => [StudentCreateDTO] })
+    studentCreateDTO: StudentCreateDTO[],
+  ) {
+    // create(@Args('studentInput') studentCreateDTO: StudentCreateDTO[]) {
+
     return this.employeeService.create(studentCreateDTO);
   }
 

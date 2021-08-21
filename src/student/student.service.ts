@@ -20,7 +20,7 @@ export class StudentService {
     return this.studentRepository.findOne(id);
   }
 
-  async create(studentCreateDTO: StudentCreateDTO): Promise<Student> {
+  async create(studentCreateDTO: StudentCreateDTO[]): Promise<Student[]> {
     const student = this.studentRepository.create(studentCreateDTO);
     return this.studentRepository.save(student);
   }
