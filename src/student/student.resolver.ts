@@ -13,7 +13,7 @@ export class StudentResolver {
     return this.employeeService.findAll();
   }
 
-  @Mutation(() => Student, { name: 'createStudent' })
+  @Mutation(() => [Student], { name: 'createStudent' })
   create(
     @Args({ name: 'studentInput', type: () => [StudentCreateDTO] })
     studentCreateDTO: StudentCreateDTO[],

@@ -22,7 +22,7 @@ export class StudentService {
 
   async create(studentCreateDTO: StudentCreateDTO[]): Promise<Student[]> {
     const student = this.studentRepository.create(studentCreateDTO);
-    return this.studentRepository.save(student);
+    return await this.studentRepository.save(student);
   }
 
   update(id: string, updateStudentInput: UpdateStudentInput) {
