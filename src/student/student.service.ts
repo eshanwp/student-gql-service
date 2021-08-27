@@ -22,38 +22,37 @@ export class StudentService {
   }
 
   async create(studentCreateDTO: StudentCreateDTO[]): Promise<Student[]> {
-    const student = this.studentRepository.create(studentCreateDTO);
-    console.log('camehere', student);
+    // const student = this.studentRepository.create(studentCreateDTO);
 
-    // const query = gql`
-    // mutation createStudents($createStudentsArray: Student[]!) { 
-    //   createStudents(input:{createMultiple: $createStudentsArray}){
-    //     students {
-    //           id,
-    //         name,
-    //      }
-    //     }
-    //   }
-    // `;
-    // const variables = {
-    //   createStudentsArray: student,
-    // };
+    
+    console.log('DTO',studentCreateDTO)
+    const variables = {
+      createStudentsArray: studentCreateDTO,
+    };
 
-    // try {
-    //   const data = await request(
-    //     'http://localhost:5000/graphiql',
-    //     query,
-    //     variables,
-    //   );
-    //   const response = JSON.stringify(data, undefined, 2);
-    //   console.log(response);
-    //   return data;
-    // } catch (error) {
-    //   const err = JSON.stringify(error, undefined, 2);
-    //   console.error(err);
-    //   return error;
-    // }
-    return await this.studentRepository.save(student);
+    const query = gql`
+      mutation createStudents($createStudentsArray:  [StudentInput!]!) {
+        createStudents(input: { createMultiple: $createStudentsArray }) {
+          __typename
+        }
+      }
+    `;
+
+    try {
+      const data = await request(
+        'http://localhost:5000/graphiql',
+        query,
+        variables,
+      );
+
+      console.log('this magic', data);
+      return data;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+
+    // return await this.studentRepository.save(student);
   }
 
   update(id: string, updateStudentInput: UpdateStudentInput) {
